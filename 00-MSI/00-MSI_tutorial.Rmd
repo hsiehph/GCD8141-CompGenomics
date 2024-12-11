@@ -1,0 +1,232 @@
+---
+title: "An introduction to MSI/shell environment"
+author: "Arslan A. Zaidi and PingHsun Hsieh"
+date: "2025-01-22"
+output:
+  html_document: default
+  pdf_document: default
+  highlight: pygments
+---
+
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '00-MSI')
+```
+
+# MSI/linux Tutorial
+
+High performance computing plays a pivotal role in genomics research because of the sheer size of genomics data today. Throughout the semester, you will learn how to develop your code and analyze data on the high performance computing (HPC) cluster at the [Minnesota Supercomputing Institute](http://www.msi.umn.edu). It is, therefore, essential for everyone being familiar with the MSI HPC system.
+
+Before this tutorial, we've asked you to finish the following tutorial videos from MSI. This tutorial serves as a brief review for some of key operations.
+
+## Requirements
+
+The most common method to access a remote server is using a terminal:\
+- On a Windows machine, it is typically via [Putty](https://msi.umn.edu/our-resources/knowledge-base/interactive-connections-faqs/how-do-i-configure-putty-connect-msi-unix-system)\
+- On a MacOS machine, it is typically via [X11/Temrinal](https://msi.umn.edu/our-resources/knowledge-base/interactive-connections-faqs/how-do-i-access-msi-unix-server-my-mac)\
+Note: if you are working off-campus, you will need to set up a [VPN](https://it.umn.edu/services-technologies/virtual-private-network-vpn) connect in order to access the MSI cluster.
+
+## Login to MSI using terminal
+
+`$ ssh your_username@agate.msi.umn.edu`
+
+```         
+By using this system you agree to adhere to MSI and UMN 
+Acceptable Use Policies, refer to www.msi.umn.edu for details. 
+```
+
+`Password:`
+
+```         
+Last login: Tue Nov  5 10:23:26 2024 from 128.101.xxx.xxx
+#-------------------------------------------------------------------------------
+            University of Minnesota Supercomputing Institute
+                                 Agate
+                          AMD EPYC Linux Cluster
+#-------------------------------------------------------------------------------
+For assistance please contact us at https://www.msi.umn.edu/support/help.html
+help@msi.umn.edu, or (612)626-0802.
+#-------------------------------------------------------------------------------
+Home directories are snapshot protected. If you accidentally delete a file in
+your home directory, type "cd .snapshot" then "ls -lt" to list the snapshots
+available in order from most recent to oldest.
+#-------------------------------------------------------------------------------
+
+[your_username@ahl03 ~]$ 
+```
+
+## Basic bash commands
+
+### File and directory navigation
+
+```{bash}
+# pwd - show the path of current working directory
+pwd
+```
+
+**Note**: The easiest way to learn more about a particular command is to use the ***man*** command:
+
+```{bash}
+# show details about the command pwd
+man pwd
+```
+
+```{bash}
+# ls - list files and directories in the current directory
+ls 
+```
+
+```{bash}
+# list files and directories in the current directory in a long format using the argument "-l"
+ls -l
+```
+
+```{bash}
+# mkdir - create a new directory, named "newDIR"
+mkdir newDIR
+ls -l
+```
+
+```{bash}
+# cd - change your working directory from the current one to "newDIR"
+cd newDIR
+pwd
+
+# change your working directory back to the parent directory
+cd ../
+pwd
+```
+
+[***Q1.***]{style="color: blue;"} With no arguments, what does **cd** do ? Hint: use **pwd**
+
+```{bash}
+# write your code here
+```
+
+```{bash}
+# remove the directory "newDIR"
+rmdir newDIR
+ls -l
+```
+
+```{bash}
+# touch – changes a file's modification timestamp without editing the contents of the file. 
+# It is also useful for creating an empty file when the filename given does not exist.
+touch file1.txt
+ls -l
+```
+
+```{bash}
+# mv – move files, directories, or both to a new location.
+mkdir newDIR
+mv file1.txt newDIR
+
+# move file1 back to the current working directory from the directory newDIR
+mv newDIR/file1.txt .
+
+# This can also be used to rename files
+mv file1.txt file2.txt
+ls -l
+```
+
+```{bash}
+# cp – copy files, directories, or both to a new location.
+
+cp file2.txt file1.txt
+ls -l
+```
+
+```{bash}
+# copy a file to a different directory than the current one 
+cp file1.txt newDIR
+ls -l newDIR
+```
+
+```{bash}
+# copy files with similar names using wildcards * to a directory
+cp file* newDIR
+ls -l newDIR
+```
+
+```{bash}
+
+# rm – removes files or directories permanently from the system. 
+# Warning: Linux does not typically have a "trash bin" or equivalent as on other OS
+rm file1.txt
+ls -l
+```
+
+```{bash}
+# With the -r or -R option, it will also remove/delete entire directories recursively and permanently.
+rm -r newDIR
+ls -l
+```
+
+**On MSI, home directories are backed up. If you accidentally delete a file in your home directory, type "cd .snapshot" then "ls -lt" to list the snapshots available in order from most recent to oldest.**
+
+*Caution*: if possible, avoid using *rm* with wildcards \*\
+For instance, the example below will remove all of the files and subdirectories within your current directory, so use with caution.\
+***rm -r \****
+
+To remove an empty directory, use *rmdir*
+
+## I/O system in Linux - stream, redirection, and pipe
+
+### Stream
+
+I/O stands for input/output. In many cases, commands or programs often require input and/or output.\
+The most straightforward input and output are files; however, Linux (or Unix-based) environment provide **streams** - programs that treat all input and output (which are text) as streams of data/text.
+
+There are three types of streams:
+
+**stdin**: standard input - the stream of data going into a command/program. By default, this is input from the keyboard.\
+**stdout**: standard output - the output stream where data is written out by a command/program. By default, this output is sent to the screen.\
+**stderr**: standard error - another output stream, in addition to stdout, where error messages are written out by commands/programs. By default, error output is sent to the screen.
+
+```{bash}
+# echo - write arguments to the standard output (screen)
+echo Hello World
+```
+
+### Redirection
+
+Output redirection is useful to save output (stdout or stderr) from a program to a file. This can be done with the redirection operator "**\>"**
+
+```{bash}
+# redirect stdout to a file
+echo Hello World > my_output.txt
+cat my_output.txt
+```
+
+**Note**: Redirection of this sort will **create** the named file if it doesn't exist, or else **overwrite** the existing file of the same name.\
+You can also append the output to an existing file using the redirection operator "\>\>"
+
+```{bash}
+echo Hello World line2 >> my_output.txt
+cat my_output.txt
+```
+
+```{bash}
+# cat - concatenate and print files to stdout
+echo NEW Hello World > my_NEWoutput.txt
+
+# concatenate two files
+cat my_output.txt my_NEWoutput.txt
+```
+
+### Pipe
+
+The pipe operator "\|", like plumbing pipes where you can connect sections to redirect water to different places, can allow linking streams of data.
+
+
+```{bash}
+# using the operator "|" to redirect stdout of a command to the stdin of another command
+
+echo Hello World line 3 | cat my_output.txt -  # operator "-" indicates stdin from the pipe
+
+# clean up
+rm *.txt
+```
+
+[*End of shell tutorial*]{.underline}
