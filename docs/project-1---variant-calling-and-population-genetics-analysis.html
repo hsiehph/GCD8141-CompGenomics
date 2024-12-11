@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Project 1 - Variant calling and population genetics analysis | GCD8141-Project1 - read QC and alignment</title>
+  <meta name="description" content="Description of Course" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Project 1 - Variant calling and population genetics analysis | GCD8141-Project1 - read QC and alignment" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Description of Course" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Project 1 - Variant calling and population genetics analysis | GCD8141-Project1 - read QC and alignment" />
+  
+  <meta name="twitter:description" content="Description of Course" />
+  
+
+<meta name="author" content="Arslan A. Zaidi and PingHsun Hsieh" />
+
+
+<meta name="date" content="2025-01-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="msilinux-tutorial.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a>
+<ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i><b>1.0.1</b> Instructor</a></li>
+<li class="chapter" data-level="1.0.2" data-path="index.html"><a href="index.html#schedule-logistics"><i class="fa fa-check"></i><b>1.0.2</b> Schedule &amp; Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html"><i class="fa fa-check"></i><b>2</b> MSI/linux Tutorial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#requirements"><i class="fa fa-check"></i><b>2.1</b> Requirements</a></li>
+<li class="chapter" data-level="2.2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#login-to-msi-using-terminal"><i class="fa fa-check"></i><b>2.2</b> Login to MSI using terminal</a></li>
+<li class="chapter" data-level="2.3" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#basic-bash-commands"><i class="fa fa-check"></i><b>2.3</b> Basic bash commands</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#file-and-directory-navigation"><i class="fa fa-check"></i><b>2.3.1</b> File and directory navigation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#io-system-in-linux---stream-redirection-and-pipe"><i class="fa fa-check"></i><b>2.4</b> I/O system in Linux - stream, redirection, and pipe</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#stream"><i class="fa fa-check"></i><b>2.4.1</b> Stream</a></li>
+<li class="chapter" data-level="2.4.2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#redirection"><i class="fa fa-check"></i><b>2.4.2</b> Redirection</a></li>
+<li class="chapter" data-level="2.4.3" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#pipe"><i class="fa fa-check"></i><b>2.4.3</b> Pipe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html"><i class="fa fa-check"></i><b>3</b> Project 1 - Variant calling and population genetics analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#part-i-short-read-sequencing-quality-control-and-variant-calling"><i class="fa fa-check"></i><b>3.1</b> Part I: Short-read sequencing, quality control, and variant calling</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#what-does-a-fastq-file-look-like"><i class="fa fa-check"></i><b>3.1.1</b> What does a FASTQ file look like?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#what-is-a-phred-quality-score"><i class="fa fa-check"></i><b>3.1.2</b> What is a Phred quality score?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#sequencing-read-quality-control"><i class="fa fa-check"></i><b>3.1.3</b> Sequencing read quality control</a></li>
+<li class="chapter" data-level="3.1.4" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#key-summary-graphs-for-read-qc"><i class="fa fa-check"></i><b>3.1.4</b> Key summary graphs for read QC</a></li>
+<li class="chapter" data-level="3.1.5" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#run-trim-galore"><i class="fa fa-check"></i><b>3.1.5</b> Run Trim Galore</a></li>
+<li class="chapter" data-level="3.1.6" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#read-alignment-against-a-reference-genome-using-bwa-mem"><i class="fa fa-check"></i><b>3.1.6</b> Read alignment against a reference genome using BWA-mem</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#variant-calling-using-gatk-variant-qc"><i class="fa fa-check"></i><b>3.2</b> Variant calling using GATK &amp; Variant QC</a></li>
+</ul></li>
+<li class="divider"></li>
+<p style="text-align:center;"> <a href="https://www.ottrproject.org/" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown using</a> </p>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/OTTR_Template"> The OTTR Template by:</a></p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GCD8141-Project1 - read QC and alignment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/style.css" rel="stylesheet">
+</head>
+
+
+
+<div class="hero-image-container">
+  <img class= "hero-image" src= "https://github.com/jhudsl/OTTR_Template/raw/main/assets/dasl_thin_main_image.png">
+</div>
+<div id="project-1---variant-calling-and-population-genetics-analysis" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Project 1 - Variant calling and population genetics analysis<a href="project-1---variant-calling-and-population-genetics-analysis.html#project-1---variant-calling-and-population-genetics-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The project tutorial of Module 1 consists of two parts: first, we will learn how to identify variants using Illumina short-read data from two samples. We will start with basic quality controls for sequencing reads and then perform read alignments and variant genotypes in these samples. The second part of this tutorial will focus on the interpretation of the genetic variation using population-level data.</p>
+<div id="part-i-short-read-sequencing-quality-control-and-variant-calling" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Part I: Short-read sequencing, quality control, and variant calling<a href="project-1---variant-calling-and-population-genetics-analysis.html#part-i-short-read-sequencing-quality-control-and-variant-calling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In modern-day genomics, Illumina sequencing is the most commonly used short-read sequencing technology. Typically, the end product of sequencing is a FASTQ file - a text file that contains the sequence data from a DNA library, which typically is from a given sample. Two of the most common library protocols: the single-end and paired-end sequencing libraries.</p>
+<p>Single-read sequencing involves sequencing DNA from only one end of a DNA fragment. Paired-end sequencing, on the other end, allows users to sequence both ends of a fragment, which enables more accurate read alignment and the ability to detect more complex variants, such as small and large insertion-deletion (indel) variants, which is more difficult with single-read data.</p>
+<div id="what-does-a-fastq-file-look-like" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> What does a FASTQ file look like?<a href="project-1---variant-calling-and-population-genetics-analysis.html#what-does-a-fastq-file-look-like" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the single-end protocol, all read sequences are written to the corresponding sample’s R1 FASTQ file, and, for a paired-end run, a pair of sequences are written to the sample’s R1 adn R2 FASTQ files, respectively.</p>
+<p>Here is an example of a pair of two reads:</p>
+<div class="float">
+<img src="01-Module1/images/fastq.R1.png" alt="Fig. 1. An example of read 1." />
+<div class="figcaption">Fig. 1. An example of read 1.</div>
+</div>
+<div class="float">
+<img src="01-Module1/images/fastq.R2.png" alt="Fig. 2. An example of read 2." />
+<div class="figcaption">Fig. 2. An example of read 2.</div>
+</div>
+<p>Each entry in a FASTQ files consists of 4 lines:</p>
+<ul>
+<li>A sequence identifier with information about the sequencing run. The exact contents of this line vary by based on the basecalling software used.</li>
+<li>The sequence (the base calls; A, C, T, G and N).</li>
+<li>A separator, which is simply a plus (+) sign.</li>
+<li>The base call quality scores. These are Phred +33 encoded, using ASCII characters to represent the numerical quality scores.</li>
+</ul>
+</div>
+<div id="what-is-a-phred-quality-score" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> What is a Phred quality score?<a href="project-1---variant-calling-and-population-genetics-analysis.html#what-is-a-phred-quality-score" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A Phred score is a common measurement for sequencing quality. It is defined as the probability of sequencing error (i.e. the base call is wrong):</p>
+<p><span class="math inline">\(Q=−10*log_{10} p\)</span></p>
+<p>where Q is the Phred quality score and p is the probability of error (i.e. the base call is wrong).</p>
+<pre><code>##   ErrorRate PhredScore Phred+33
+## 1     0.100         10        +
+## 2     0.010         20        5
+## 3     0.001         30        ?</code></pre>
+</div>
+<div id="sequencing-read-quality-control" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Sequencing read quality control<a href="project-1---variant-calling-and-population-genetics-analysis.html#sequencing-read-quality-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="float">
+<img src="01-Module1/images/readQCsteps.png" alt="Fig. 3. Read quality control." />
+<div class="figcaption">Fig. 3. Read quality control.</div>
+</div>
+<p>It is important to understand the quality of raw reads before moving forward to any analysis. In this tutorial, we will use FastQC, a common software to produce summary statistics and visualization to assess the quality of our data. Despite that most modern sequencing technologies produce high-quality reads, it is often to observe low quality bases towards the 3’-end and some towards the 5’-end as well. In addition, ocassionally one could find residual adapter sequences in reads. To remove these potential artifacts, we will apply Trim Galore to FASTQ files.</p>
+<pre><code># Login to the course directory on the MSI
+ssh your_username@agate.msi.umn.edu
+cd /PATH_to_GCD8141_DIR/benson/
+
+# start an interactive session with 4 cores
+srun -N 1 --ntasks-per-node=1 --cpus-per-task=4 --mem=10gb -t 3:0:0 --tmp=20g -p interactive --pty bash
+
+# Activate the environment GCD8141_projects
+source activate GCD8141_projects
+
+# Create a new working directory for FastQC under the project1 directory
+mkdir -p project1/myFASTQqc/pretrimmed
+cd project1/myFASTQqc/pretrimmed
+
+# Run fastqc with 4 cores 
+# For 100 million reads (~5X coverage in the human genome), it takes ~5 minutes to finish.
+fastqc -t 4 /PATH_to_GCD8141_DIR/benson/files/fastq/ERR3239279_1.fastq.50e7.gz /PATH_to_GCD8141_DIR/benson/files/fastq/ERR3239279_2.fastq.50e7.gz </code></pre>
+<p>By default, FastQC generates an HTML file (e.g., ERR3239279_1.fastq.50e7_fastqc.html), which includes key summary statistics and figures. In addition, individual figures and other outputs are placed in a zip file (e.g., ERR3239279_1.fastq.50e7_fastqc.zip).</p>
+</div>
+<div id="key-summary-graphs-for-read-qc" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Key summary graphs for read QC<a href="project-1---variant-calling-and-population-genetics-analysis.html#key-summary-graphs-for-read-qc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Per base quality scores</strong></p>
+<img src="01-Module1/images/Bad-PerBaseSeqQuality.png" width="350" /> <img src="01-Module1/images/Good-PerBaseSeqQuality.png" width="350" />
+<caption>
+<p>Fig. 4. Per base quality.</p>
+<p><strong>Per sequence quality</strong></p>
+<img src="01-Module1/images/Bad-PerSeqQscore.png" width="350" /> <img src="01-Module1/images/Good-PerSeqQscore.png" width="350" />
+<caption>
+<p>Fig. 5 Per sequence quality.</p>
+<p><strong>Sequence Duplication</strong></p>
+<img src="01-Module1/images/Bad-SeqDuplicationLevels.png" width="350" /> <img src="01-Module1/images/Good-SeqDuplicationLevels.png" width="350" />
+<caption>
+<p>Fig. 6 Sequence duplication levels.</p>
+</div>
+<div id="run-trim-galore" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Run Trim Galore<a href="project-1---variant-calling-and-population-genetics-analysis.html#run-trim-galore" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code># create a working direcotry for running Trim Galore
+cd /PATH_to_GCD8141_DIR/benson/
+mkdir -p project1/myFASTQqc/trimmed/
+
+# Input: paired-end
+# Retain unpaired reads if any
+# Standard Illumina adapter trimming 
+# Enable FastQC analysis 
+# Minimal length filter = 100 
+# Minimial base quality (Phred) = 20 
+# Overlap with adapters required for trimming = 5 bps (1 is most stringent) 
+# Number of cores = 4
+# This takes about 50 minutes (100 million reads)
+
+trim_galore ERR3239279_1.fastq.50e7.gz ERR3239279_2.fastq.50e7.gz \
+--paired \
+--retain_unpaired \
+--illumina \
+--fastqc \
+--length 100 \
+-q 20 \
+--stringency 5 \
+-j 4 </code></pre>
+<p>This command first trims any bases with Phred scores <span class="math inline">\(&lt; 20\)</span> or overlapping <span class="math inline">\(\ge 5\)</span> bases with standard Illumina adapter sequences. Only both paired reads longer than 100 bps after trimming will be retained. By default, the QC-passed, trimmed reads are output to <strong>*_val_[1|2].fq.gz</strong> and <strong>*_unpaired_[1|2].fq.gz</strong> for reads becoming unpaired after trimming.</p>
+<p><strong>Q1.</strong> Check the output trimming summary files (<strong>*_trimming_report.txt</strong>). Describe the quality of your reads.</p>
+<p><strong>Q2.</strong> Check the output FastQC HTML files (<strong>*_val_[1|2].fastqc.html</strong>). Describe any difference you see compared with the pre-trimmed FastQC output.</p>
+</div>
+<div id="read-alignment-against-a-reference-genome-using-bwa-mem" class="section level3 hasAnchor" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> Read alignment against a reference genome using BWA-mem<a href="project-1---variant-calling-and-population-genetics-analysis.html#read-alignment-against-a-reference-genome-using-bwa-mem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To identify variants in our samples, the most common practice is to align reads from individual genomes to a reference genome. In this tutorial, we choose BWA-mem2 (v2.2.1), one of the most popular read aligners, to align reads against the human reference genome GRCh38.</p>
+<pre><code>cd /PATH_to_GCD8141_DIR/benson/
+# create a directory for alignments
+mkdir -p project1/alignment/ref/
+# create hard links for the shared GRCh38 fasta sequence files
+cp -l /PATH_to_GCD8141_DIR/benson/project1/alignment/ref/GRCh38_full_analysis_set_plus_decoy_hla.* .
+
+# first, we need to create index files for BWA-mem2
+# (pre-made; took ~30 mins)
+# (not run) bwa-mem2 index GRCh38_full_analysis_set_plus_decoy_hla.fa
+
+bwa-mem2 mem  -M -t 4 </code></pre>
+</div>
+</div>
+<div id="variant-calling-using-gatk-variant-qc" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Variant calling using GATK &amp; Variant QC<a href="project-1---variant-calling-and-population-genetics-analysis.html#variant-calling-using-gatk-variant-qc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+<script>
+  var links = document.getElementsByTagName('a');
+  var len = links.length;
+
+  for(var i=0; i<len; i++)
+  {
+    links[i].target = "_blank";
+  }
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="msilinux-tutorial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

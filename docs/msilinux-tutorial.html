@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 MSI/linux Tutorial | An introduction to MSI/shell environment</title>
+  <meta name="description" content="Description of Course" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 MSI/linux Tutorial | An introduction to MSI/shell environment" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Description of Course" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 MSI/linux Tutorial | An introduction to MSI/shell environment" />
+  
+  <meta name="twitter:description" content="Description of Course" />
+  
+
+<meta name="author" content="Arslan A. Zaidi and PingHsun Hsieh" />
+
+
+<meta name="date" content="2025-01-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/dasl_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="index.html"/>
+<link rel="next" href="project-1---variant-calling-and-population-genetics-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Homepage</a>
+<ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i><b>1.0.1</b> Instructor</a></li>
+<li class="chapter" data-level="1.0.2" data-path="index.html"><a href="index.html#schedule-logistics"><i class="fa fa-check"></i><b>1.0.2</b> Schedule &amp; Logistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html"><i class="fa fa-check"></i><b>2</b> MSI/linux Tutorial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#requirements"><i class="fa fa-check"></i><b>2.1</b> Requirements</a></li>
+<li class="chapter" data-level="2.2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#login-to-msi-using-terminal"><i class="fa fa-check"></i><b>2.2</b> Login to MSI using terminal</a></li>
+<li class="chapter" data-level="2.3" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#basic-bash-commands"><i class="fa fa-check"></i><b>2.3</b> Basic bash commands</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#file-and-directory-navigation"><i class="fa fa-check"></i><b>2.3.1</b> File and directory navigation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#io-system-in-linux---stream-redirection-and-pipe"><i class="fa fa-check"></i><b>2.4</b> I/O system in Linux - stream, redirection, and pipe</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#stream"><i class="fa fa-check"></i><b>2.4.1</b> Stream</a></li>
+<li class="chapter" data-level="2.4.2" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#redirection"><i class="fa fa-check"></i><b>2.4.2</b> Redirection</a></li>
+<li class="chapter" data-level="2.4.3" data-path="msilinux-tutorial.html"><a href="msilinux-tutorial.html#pipe"><i class="fa fa-check"></i><b>2.4.3</b> Pipe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html"><i class="fa fa-check"></i><b>3</b> Project 1 - Variant calling and population genetics analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#part-i-short-read-sequencing-quality-control-and-variant-calling"><i class="fa fa-check"></i><b>3.1</b> Part I: Short-read sequencing, quality control, and variant calling</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#what-does-a-fastq-file-look-like"><i class="fa fa-check"></i><b>3.1.1</b> What does a FASTQ file look like?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#what-is-a-phred-quality-score"><i class="fa fa-check"></i><b>3.1.2</b> What is a Phred quality score?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#sequencing-read-quality-control"><i class="fa fa-check"></i><b>3.1.3</b> Sequencing read quality control</a></li>
+<li class="chapter" data-level="3.1.4" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#key-summary-graphs-for-read-qc"><i class="fa fa-check"></i><b>3.1.4</b> Key summary graphs for read QC</a></li>
+<li class="chapter" data-level="3.1.5" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#run-trim-galore"><i class="fa fa-check"></i><b>3.1.5</b> Run Trim Galore</a></li>
+<li class="chapter" data-level="3.1.6" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#read-alignment-against-a-reference-genome-using-bwa-mem"><i class="fa fa-check"></i><b>3.1.6</b> Read alignment against a reference genome using BWA-mem</a></li>
+<li class="chapter" data-level="3.1.7" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#variant-calling-using-gatk"><i class="fa fa-check"></i><b>3.1.7</b> Variant calling using GATK</a></li>
+<li class="chapter" data-level="3.1.8" data-path="project-1---variant-calling-and-population-genetics-analysis.html"><a href="project-1---variant-calling-and-population-genetics-analysis.html#variant-qc"><i class="fa fa-check"></i><b>3.1.8</b> Variant QC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<p style="text-align:center;"> <a href="https://www.ottrproject.org/" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown using</a> </p>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/OTTR_Template"> The OTTR Template by:</a></p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An introduction to MSI/shell environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/style.css" rel="stylesheet">
+</head>
+
+
+
+<div class="hero-image-container">
+  <img class= "hero-image" src= "https://github.com/jhudsl/OTTR_Template/raw/main/assets/dasl_thin_main_image.png">
+</div>
+<div id="msilinux-tutorial" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> MSI/linux Tutorial<a href="msilinux-tutorial.html#msilinux-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>High performance computing plays a pivotal role in genomics research because of the sheer size of genomics data today. Throughout the semester, you will learn how to develop your code and analyze data on the high performance computing (HPC) cluster at the <a href="http://www.msi.umn.edu">Minnesota Supercomputing Institute</a>. It is, therefore, essential for everyone being familiar with the MSI HPC system.</p>
+<p>Before this tutorial, we’ve asked you to finish the following tutorial videos from MSI. This tutorial serves as a brief review for some of key operations.</p>
+<div id="requirements" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Requirements<a href="msilinux-tutorial.html#requirements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The most common method to access a remote server is using a terminal:<br />
+- On a Windows machine, it is typically via <a href="https://msi.umn.edu/our-resources/knowledge-base/interactive-connections-faqs/how-do-i-configure-putty-connect-msi-unix-system">Putty</a><br />
+- On a MacOS machine, it is typically via <a href="https://msi.umn.edu/our-resources/knowledge-base/interactive-connections-faqs/how-do-i-access-msi-unix-server-my-mac">X11/Temrinal</a><br />
+Note: if you are working off-campus, you will need to set up a <a href="https://it.umn.edu/services-technologies/virtual-private-network-vpn">VPN</a> connect in order to access the MSI cluster.</p>
+</div>
+<div id="login-to-msi-using-terminal" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Login to MSI using terminal<a href="msilinux-tutorial.html#login-to-msi-using-terminal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>$ ssh your_username@agate.msi.umn.edu</code></p>
+<pre><code>By using this system you agree to adhere to MSI and UMN 
+Acceptable Use Policies, refer to www.msi.umn.edu for details. </code></pre>
+<p><code>Password:</code></p>
+<pre><code>Last login: Tue Nov  5 10:23:26 2024 from 128.101.xxx.xxx
+#-------------------------------------------------------------------------------
+            University of Minnesota Supercomputing Institute
+                                 Agate
+                          AMD EPYC Linux Cluster
+#-------------------------------------------------------------------------------
+For assistance please contact us at https://www.msi.umn.edu/support/help.html
+help@msi.umn.edu, or (612)626-0802.
+#-------------------------------------------------------------------------------
+Home directories are snapshot protected. If you accidentally delete a file in
+your home directory, type &quot;cd .snapshot&quot; then &quot;ls -lt&quot; to list the snapshots
+available in order from most recent to oldest.
+#-------------------------------------------------------------------------------
+
+[your_username@ahl03 ~]$ </code></pre>
+</div>
+<div id="basic-bash-commands" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Basic bash commands<a href="msilinux-tutorial.html#basic-bash-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="file-and-directory-navigation" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> File and directory navigation<a href="msilinux-tutorial.html#file-and-directory-navigation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="msilinux-tutorial.html#cb3-1" tabindex="-1"></a><span class="co"># pwd - show the path of current working directory</span></span>
+<span id="cb3-2"><a href="msilinux-tutorial.html#cb3-2" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<pre><code>## /Users/hseihph/GCD8141/00-MSI</code></pre>
+<p><strong>Note</strong>: The easiest way to learn more about a particular command is to use the <strong><em>man</em></strong> command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="msilinux-tutorial.html#cb5-1" tabindex="-1"></a><span class="co"># show details about the command pwd</span></span>
+<span id="cb5-2"><a href="msilinux-tutorial.html#cb5-2" tabindex="-1"></a><span class="fu">man</span> pwd</span></code></pre></div>
+<pre><code>## PWD(1)                           User Commands                          PWD(1)
+## 
+## 
+## 
+## NNAAMMEE
+##        pwd - print name of current/working directory
+## 
+## SSYYNNOOPPSSIISS
+##        ppwwdd [_O_P_T_I_O_N]...
+## 
+## DDEESSCCRRIIPPTTIIOONN
+##        Print the full filename of the current working directory.
+## 
+##        --LL, ----llooggiiccaall
+##               use PWD from environment, even if it contains symlinks
+## 
+##        --PP, ----pphhyyssiiccaall
+##               avoid all symlinks
+## 
+##        ----hheellpp display this help and exit
+## 
+##        ----vveerrssiioonn
+##               output version information and exit
+## 
+##        If no option is specified, --PP is assumed.
+## 
+##        Your  shell  may  have its own version of pwd, which usually supersedes
+##        the version described here.  Please refer to your shell&#39;s documentation
+##        for details about the options it supports.
+## 
+## AAUUTTHHOORR
+##        Written by Jim Meyering.
+## 
+## RREEPPOORRTTIINNGG BBUUGGSS
+##        GNU coreutils online help: &lt;https://www.gnu.org/software/coreutils/&gt;
+##        Report any translation bugs to &lt;https://translationproject.org/team/&gt;
+## 
+## CCOOPPYYRRIIGGHHTT
+##        Copyright  (C) 2024 Free Software Foundation, Inc.  License GPLv3+: GNU
+##        GPL version 3 or later &lt;https://gnu.org/licenses/gpl.html&gt;.
+##        This is free software: you are free  to  change  and  redistribute  it.
+##        There is NO WARRANTY, to the extent permitted by law.
+## 
+## SSEEEE AALLSSOO
+##        ggeettccwwdd(3)
+## 
+##        Full documentation &lt;https://www.gnu.org/software/coreutils/pwd&gt;
+##        or available locally via: info &#39;(coreutils) pwd invocation&#39;
+## 
+## 
+## 
+## GNU coreutils 9.5                 March 2024                            PWD(1)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="msilinux-tutorial.html#cb7-1" tabindex="-1"></a><span class="co"># ls - list files and directories in the current directory</span></span>
+<span id="cb7-2"><a href="msilinux-tutorial.html#cb7-2" tabindex="-1"></a><span class="fu">ls</span> </span></code></pre></div>
+<pre><code>## 00-MSI_tutorial.Rmd
+## README.md</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="msilinux-tutorial.html#cb9-1" tabindex="-1"></a><span class="co"># list files and directories in the current directory in a long format using the argument &quot;-l&quot;</span></span>
+<span id="cb9-2"><a href="msilinux-tutorial.html#cb9-2" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="msilinux-tutorial.html#cb11-1" tabindex="-1"></a><span class="co"># mkdir - create a new directory, named &quot;newDIR&quot;</span></span>
+<span id="cb11-2"><a href="msilinux-tutorial.html#cb11-2" tabindex="-1"></a><span class="fu">mkdir</span> newDIR</span>
+<span id="cb11-3"><a href="msilinux-tutorial.html#cb11-3" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## drwxr-xr-x 2 hseihph staff   64 Dec 11 13:59 newDIR</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="msilinux-tutorial.html#cb13-1" tabindex="-1"></a><span class="co"># cd - change your working directory from the current one to &quot;newDIR&quot;</span></span>
+<span id="cb13-2"><a href="msilinux-tutorial.html#cb13-2" tabindex="-1"></a><span class="bu">cd</span> newDIR</span>
+<span id="cb13-3"><a href="msilinux-tutorial.html#cb13-3" tabindex="-1"></a><span class="bu">pwd</span></span>
+<span id="cb13-4"><a href="msilinux-tutorial.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="msilinux-tutorial.html#cb13-5" tabindex="-1"></a><span class="co"># change your working directory back to the parent directory</span></span>
+<span id="cb13-6"><a href="msilinux-tutorial.html#cb13-6" tabindex="-1"></a><span class="bu">cd</span> ../</span>
+<span id="cb13-7"><a href="msilinux-tutorial.html#cb13-7" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre></div>
+<pre><code>## /Users/hseihph/GCD8141/00-MSI/newDIR
+## /Users/hseihph/GCD8141/00-MSI</code></pre>
+<p><span style="color: blue;"><strong><em>Q1.</em></strong></span> With no arguments, what does <strong>cd</strong> do ? Hint: use <strong>pwd</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="msilinux-tutorial.html#cb15-1" tabindex="-1"></a><span class="co"># write your code here</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="msilinux-tutorial.html#cb16-1" tabindex="-1"></a><span class="co"># remove the directory &quot;newDIR&quot;</span></span>
+<span id="cb16-2"><a href="msilinux-tutorial.html#cb16-2" tabindex="-1"></a><span class="fu">rmdir</span> newDIR</span>
+<span id="cb16-3"><a href="msilinux-tutorial.html#cb16-3" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="msilinux-tutorial.html#cb18-1" tabindex="-1"></a><span class="co"># touch – changes a file&#39;s modification timestamp without editing the contents of the file. </span></span>
+<span id="cb18-2"><a href="msilinux-tutorial.html#cb18-2" tabindex="-1"></a><span class="co"># It is also useful for creating an empty file when the filename given does not exist.</span></span>
+<span id="cb18-3"><a href="msilinux-tutorial.html#cb18-3" tabindex="-1"></a><span class="fu">touch</span> file1.txt</span>
+<span id="cb18-4"><a href="msilinux-tutorial.html#cb18-4" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file1.txt</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="msilinux-tutorial.html#cb20-1" tabindex="-1"></a><span class="co"># mv – move files, directories, or both to a new location.</span></span>
+<span id="cb20-2"><a href="msilinux-tutorial.html#cb20-2" tabindex="-1"></a><span class="fu">mkdir</span> newDIR</span>
+<span id="cb20-3"><a href="msilinux-tutorial.html#cb20-3" tabindex="-1"></a><span class="fu">mv</span> file1.txt newDIR</span>
+<span id="cb20-4"><a href="msilinux-tutorial.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="msilinux-tutorial.html#cb20-5" tabindex="-1"></a><span class="co"># move file1 back to the current working directory from the directory newDIR</span></span>
+<span id="cb20-6"><a href="msilinux-tutorial.html#cb20-6" tabindex="-1"></a><span class="fu">mv</span> newDIR/file1.txt .</span>
+<span id="cb20-7"><a href="msilinux-tutorial.html#cb20-7" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="msilinux-tutorial.html#cb20-8" tabindex="-1"></a><span class="co"># This can also be used to rename files</span></span>
+<span id="cb20-9"><a href="msilinux-tutorial.html#cb20-9" tabindex="-1"></a><span class="fu">mv</span> file1.txt file2.txt</span>
+<span id="cb20-10"><a href="msilinux-tutorial.html#cb20-10" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file2.txt
+## drwxr-xr-x 2 hseihph staff   64 Dec 11 13:59 newDIR</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="msilinux-tutorial.html#cb22-1" tabindex="-1"></a><span class="co"># cp – copy files, directories, or both to a new location.</span></span>
+<span id="cb22-2"><a href="msilinux-tutorial.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="msilinux-tutorial.html#cb22-3" tabindex="-1"></a><span class="fu">cp</span> file2.txt file1.txt</span>
+<span id="cb22-4"><a href="msilinux-tutorial.html#cb22-4" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file1.txt
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file2.txt
+## drwxr-xr-x 2 hseihph staff   64 Dec 11 13:59 newDIR</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="msilinux-tutorial.html#cb24-1" tabindex="-1"></a><span class="co"># copy a file to a different directory than the current one </span></span>
+<span id="cb24-2"><a href="msilinux-tutorial.html#cb24-2" tabindex="-1"></a><span class="fu">cp</span> file1.txt newDIR</span>
+<span id="cb24-3"><a href="msilinux-tutorial.html#cb24-3" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> newDIR</span></code></pre></div>
+<pre><code>## total 0
+## -rw-r--r-- 1 hseihph staff 0 Dec 11 13:59 file1.txt</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="msilinux-tutorial.html#cb26-1" tabindex="-1"></a><span class="co"># copy files with similar names using wildcards * to a directory</span></span>
+<span id="cb26-2"><a href="msilinux-tutorial.html#cb26-2" tabindex="-1"></a><span class="fu">cp</span> file<span class="pp">*</span> newDIR</span>
+<span id="cb26-3"><a href="msilinux-tutorial.html#cb26-3" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> newDIR</span></code></pre></div>
+<pre><code>## total 0
+## -rw-r--r-- 1 hseihph staff 0 Dec 11 13:59 file1.txt
+## -rw-r--r-- 1 hseihph staff 0 Dec 11 13:59 file2.txt</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="msilinux-tutorial.html#cb28-1" tabindex="-1"></a></span>
+<span id="cb28-2"><a href="msilinux-tutorial.html#cb28-2" tabindex="-1"></a><span class="co"># rm – removes files or directories permanently from the system. </span></span>
+<span id="cb28-3"><a href="msilinux-tutorial.html#cb28-3" tabindex="-1"></a><span class="co"># Warning: Linux does not typically have a &quot;trash bin&quot; or equivalent as on other OS</span></span>
+<span id="cb28-4"><a href="msilinux-tutorial.html#cb28-4" tabindex="-1"></a><span class="fu">rm</span> file1.txt</span>
+<span id="cb28-5"><a href="msilinux-tutorial.html#cb28-5" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file2.txt
+## drwxr-xr-x 4 hseihph staff  128 Dec 11 13:59 newDIR</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="msilinux-tutorial.html#cb30-1" tabindex="-1"></a><span class="co"># With the -r or -R option, it will also remove/delete entire directories recursively and permanently.</span></span>
+<span id="cb30-2"><a href="msilinux-tutorial.html#cb30-2" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> newDIR</span>
+<span id="cb30-3"><a href="msilinux-tutorial.html#cb30-3" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span></span></code></pre></div>
+<pre><code>## total 12
+## -rw-r--r-- 1 hseihph staff 7294 Dec 11 13:58 00-MSI_tutorial.Rmd
+## -rw-r--r-- 1 hseihph staff  124 Dec 10 15:26 README.md
+## -rw-r--r-- 1 hseihph staff    0 Dec 11 13:59 file2.txt</code></pre>
+<p><strong>On MSI, home directories are backed up. If you accidentally delete a file in your home directory, type “cd .snapshot” then “ls -lt” to list the snapshots available in order from most recent to oldest.</strong></p>
+<p><em>Caution</em>: if possible, avoid using <em>rm</em> with wildcards *<br />
+For instance, the example below will remove all of the files and subdirectories within your current directory, so use with caution.<br />
+<strong><em>rm -r *</em></strong></p>
+<p>To remove an empty directory, use <em>rmdir</em></p>
+</div>
+</div>
+<div id="io-system-in-linux---stream-redirection-and-pipe" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> I/O system in Linux - stream, redirection, and pipe<a href="msilinux-tutorial.html#io-system-in-linux---stream-redirection-and-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="stream" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Stream<a href="msilinux-tutorial.html#stream" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I/O stands for input/output. In many cases, commands or programs often require input and/or output.<br />
+The most straightforward input and output are files; however, Linux (or Unix-based) environment provide <strong>streams</strong> - programs that treat all input and output (which are text) as streams of data/text.</p>
+<p>There are three types of streams:</p>
+<p><strong>stdin</strong>: standard input - the stream of data going into a command/program. By default, this is input from the keyboard.<br />
+<strong>stdout</strong>: standard output - the output stream where data is written out by a command/program. By default, this output is sent to the screen.<br />
+<strong>stderr</strong>: standard error - another output stream, in addition to stdout, where error messages are written out by commands/programs. By default, error output is sent to the screen.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="msilinux-tutorial.html#cb32-1" tabindex="-1"></a><span class="co"># echo - write arguments to the standard output (screen)</span></span>
+<span id="cb32-2"><a href="msilinux-tutorial.html#cb32-2" tabindex="-1"></a><span class="bu">echo</span> Hello World</span></code></pre></div>
+<pre><code>## Hello World</code></pre>
+</div>
+<div id="redirection" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Redirection<a href="msilinux-tutorial.html#redirection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Output redirection is useful to save output (stdout or stderr) from a program to a file. This can be done with the redirection operator “<strong>&gt;“</strong></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="msilinux-tutorial.html#cb34-1" tabindex="-1"></a><span class="co"># redirect stdout to a file</span></span>
+<span id="cb34-2"><a href="msilinux-tutorial.html#cb34-2" tabindex="-1"></a><span class="bu">echo</span> Hello World <span class="op">&gt;</span> my_output.txt</span>
+<span id="cb34-3"><a href="msilinux-tutorial.html#cb34-3" tabindex="-1"></a><span class="fu">cat</span> my_output.txt</span></code></pre></div>
+<pre><code>## Hello World</code></pre>
+<p><strong>Note</strong>: Redirection of this sort will <strong>create</strong> the named file if it doesn’t exist, or else <strong>overwrite</strong> the existing file of the same name.<br />
+You can also append the output to an existing file using the redirection operator “&gt;&gt;”</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="msilinux-tutorial.html#cb36-1" tabindex="-1"></a><span class="bu">echo</span> Hello World line2 <span class="op">&gt;&gt;</span> my_output.txt</span>
+<span id="cb36-2"><a href="msilinux-tutorial.html#cb36-2" tabindex="-1"></a><span class="fu">cat</span> my_output.txt</span></code></pre></div>
+<pre><code>## Hello World
+## Hello World line2</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="msilinux-tutorial.html#cb38-1" tabindex="-1"></a><span class="co"># cat - concatenate and print files to stdout</span></span>
+<span id="cb38-2"><a href="msilinux-tutorial.html#cb38-2" tabindex="-1"></a><span class="bu">echo</span> NEW Hello World <span class="op">&gt;</span> my_NEWoutput.txt</span>
+<span id="cb38-3"><a href="msilinux-tutorial.html#cb38-3" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="msilinux-tutorial.html#cb38-4" tabindex="-1"></a><span class="co"># concatenate two files</span></span>
+<span id="cb38-5"><a href="msilinux-tutorial.html#cb38-5" tabindex="-1"></a><span class="fu">cat</span> my_output.txt my_NEWoutput.txt</span></code></pre></div>
+<pre><code>## Hello World
+## Hello World line2
+## NEW Hello World</code></pre>
+</div>
+<div id="pipe" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Pipe<a href="msilinux-tutorial.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The pipe operator “|”, like plumbing pipes where you can connect sections to redirect water to different places, can allow linking streams of data.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="msilinux-tutorial.html#cb40-1" tabindex="-1"></a><span class="co"># using the operator &quot;|&quot; to redirect stdout of a command to the stdin of another command</span></span>
+<span id="cb40-2"><a href="msilinux-tutorial.html#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="msilinux-tutorial.html#cb40-3" tabindex="-1"></a><span class="bu">echo</span> Hello World line 3 <span class="kw">|</span> <span class="fu">cat</span> my_output.txt <span class="at">-</span>  <span class="co"># operator &quot;-&quot; indicates stdin from the pipe</span></span>
+<span id="cb40-4"><a href="msilinux-tutorial.html#cb40-4" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="msilinux-tutorial.html#cb40-5" tabindex="-1"></a><span class="co"># clean up</span></span>
+<span id="cb40-6"><a href="msilinux-tutorial.html#cb40-6" tabindex="-1"></a><span class="fu">rm</span> <span class="pp">*</span>.txt</span></code></pre></div>
+<pre><code>## Hello World
+## Hello World line2
+## Hello World line 3</code></pre>
+<p><u><em>End of shell tutorial</em></u></p>
+
+</div>
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+<script>
+  var links = document.getElementsByTagName('a');
+  var len = links.length;
+
+  for(var i=0; i<len; i++)
+  {
+    links[i].target = "_blank";
+  }
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="project-1---variant-calling-and-population-genetics-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
